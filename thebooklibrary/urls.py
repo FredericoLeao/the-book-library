@@ -14,9 +14,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path, include
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
     path('api/books/', include('book.urls_api')),
     path('api/authors/', include('book.urls_authors_api')),
     path('api/categories/', include('book.urls_categories_api')),
+    path('api/login/', TokenObtainPairView.as_view()),
+    path('api/login/refresh/', TokenObtainPairView.as_view()),
+    path('api/accounts/', include('account.urls_api')),
 ]
